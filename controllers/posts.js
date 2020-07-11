@@ -3,8 +3,14 @@ const Post = require('../models/post');
 module.exports = (app) => {
     // INDEX
     app.get('/', (req, res) => {
-        res.render('posts-index', { msg: 'Handlebars are Cool!' });
-      })
+        Post.find({}).lean()
+            .then(posts => {
+                res.render("posts-index", { posts });
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
+    })
     // CREATE NEW POST [GET]
     app.get('/posts/new', (req, res) => {
         res.render('posts-new');
