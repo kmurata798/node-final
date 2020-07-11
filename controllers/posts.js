@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const post = require('../models/post');
 
 module.exports = (app) => {
     // INDEX
@@ -25,5 +26,14 @@ module.exports = (app) => {
             // REDIRECT TO THE ROOT
             return res.redirect(`/`);
         })
+    });
+    app.get('/posts/:id', function(req, res) {
+        Post.findById(req.params.id).lean()
+            .then(post => {
+                res.render('posts-show', { post });
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
     });
 };
