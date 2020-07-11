@@ -3,15 +3,26 @@ const app = express()
 const port = 3000
 
 // MIDDLEWARE
+const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 var exphbs = require('express-handlebars');
 
+// ACCESSING POST REQUESTS
+// Use Body Parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+// Add after body parser initialization!
+app.use(expressValidator());
+
+// TEMPLATE ENGINE
 // Use "main" as our default layout
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 // Use handlebars to render
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => {
-  res.render('posts-index', { msg: 'Handlebars are Cool!' });
-})
+// Set db
+require('./data/cartoon-db');
+// CONTROLLERS
+require('./controllers/posts.js')(app);
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
