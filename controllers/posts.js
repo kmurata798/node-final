@@ -27,6 +27,8 @@ module.exports = (app) => {
             return res.redirect(`/`);
         })
     });
+
+    // SINGLE POST [GET]
     app.get('/posts/:id', function(req, res) {
         Post.findById(req.params.id).lean()
             .then(post => {
@@ -36,7 +38,8 @@ module.exports = (app) => {
                 console.log(err.message);
             });
     });
-    // CATEGORY SHOW
+
+    // CATEGORY SHOW [GET]
     app.get("/n/:category", function(req, res) {
         Post.find({ category: req.params.category }).lean()
             .then(posts => {
