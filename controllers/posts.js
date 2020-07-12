@@ -36,4 +36,14 @@ module.exports = (app) => {
                 console.log(err.message);
             });
     });
+    // CATEGORY SHOW
+    app.get("/n/:category", function(req, res) {
+        Post.find({ category: req.params.category }).lean()
+            .then(posts => {
+                res.render("posts-index", { posts });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    });
 };
