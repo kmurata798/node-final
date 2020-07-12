@@ -7,7 +7,8 @@ const PostSchema = new Schema({
     title: { type: String, required: true },
     url: { type: String, required: true },
     summary: { type: String, required: true },
-    category: { type: String }
+    category: { type: String },
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 });
 
 PostSchema.pre("save", function(next) {

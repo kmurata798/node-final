@@ -1,3 +1,4 @@
+const Post = require('../models/post');
 const Comment = require('../models/comment');
 
 module.exports = function(app) {
@@ -10,8 +11,14 @@ module.exports = function(app) {
         comment
         .save()
         .then(comment => {
-            // REDIRECT TO THE ROOT
-            return res.redirect(`/`);
+            return Post.findById(req.params.postId);
+        })
+        .then(post => {
+            post.comments.unshift(comment);
+            return post.save();
+        })
+        .then(post => {
+            res.redirect(`/`);
         })
         .catch(err => {
             console.log(err);

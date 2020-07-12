@@ -30,13 +30,14 @@ module.exports = (app) => {
 
     // SINGLE POST [GET]
     app.get('/posts/:id', function(req, res) {
-        Post.findById(req.params.id).lean()
-            .then(post => {
-                res.render('posts-show', { post });
+        // LOOK UP THE POST
+        Post.findById(req.params.id).populate('comments').lean()
+            .then((post) => {
+                res.render('posts-show', { post })
             })
-            .catch(err => {
-                console.log(err.message);
-            });
+            .catch((err) => {
+                console.log(err.message)
+            })
     });
 
     // CATEGORY SHOW [GET]
