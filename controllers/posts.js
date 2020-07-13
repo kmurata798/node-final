@@ -55,7 +55,7 @@ module.exports = (app) => {
         // ALLOW ROUTE TO IDENTIFY USER
         var currentUser = req.user;
         // LOOK UP THE POST
-        Post.findById(req.params.id).populate('comments').lean()
+        Post.findById(req.params.id).populate({path:'comments', populate: {path: 'author'}}).populate('author').lean()
             .then((post) => {
                 res.render('posts-show', { post, currentUser })
             })
@@ -67,7 +67,7 @@ module.exports = (app) => {
     // CATEGORY SHOW [GET]
     app.get("/n/:category", function(req, res) {
         var currentUser = req.user;
-        Post.find({ category: req.params.category }).lean()
+        Post.find({ category: req.params.category }).populate('author').lean()
             .then(posts => {
                 res.render("posts-index", { posts, currentUser });
             })

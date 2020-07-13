@@ -4,6 +4,8 @@
       {{!-- target="_blank" opens the given link in a new window --}}
     <a href="{{post.url}}" class="lead" target="_blank">{{post.title}}</a>
     <p>{{post.summary}}</p>
+    <p>Author: {{post.author.username}}</p>
+
     {{!-- COMMENTS --}}
     <form action="/posts/{{post._id}}/comments" method="post">
       <textarea class='form-control' name="content" placeholder="Comment"></textarea>
@@ -11,7 +13,8 @@
         <button type="submit" class="btn btn-primary">Save</button>
       </div>
       {{#each post.comments}}
-        <p>{{this.content}}</p>
+          <p>{{this.content}}</p>
+          <p class="text-right">{{this.author.username}}</p>
       {{/each}}
   </form>
   </div>
