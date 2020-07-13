@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
+require('dotenv').config();
 
 // MIDDLEWARE
 const bodyParser = require('body-parser');
@@ -25,6 +26,7 @@ require('./data/cartoon-db');
 // CONTROLLERS
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
+require('./controllers/auth.js')(app);
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 

@@ -18,7 +18,8 @@ module.exports = function(app) {
             return post.save();
         })
         .then(post => {
-            res.redirect(`/`);
+            // `/posts/${req.params.postId}` to redirect back to same single post
+            res.redirect(`/posts/${req.params.postId}`);
         })
         .catch(err => {
             console.log(err);
