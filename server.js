@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(expressValidator());
 app.use(cookieParser());
+app.use(express.static("public"))
 // Add after body parser initialization!
 
 // TEMPLATE ENGINE
@@ -46,6 +47,7 @@ require('./data/cartoon-db');
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
 require('./controllers/auth.js')(app);
+require('./controllers/replies.js')(app)
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
