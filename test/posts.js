@@ -24,8 +24,8 @@ describe('Posts', function() {
         summary: 'post summary'
     };
     const user = {
-        username: 'poststest',
-        password: 'testposts'
+        username: 'sampleuser',
+        password: 'samplepass'
     };
     before(function (done) {
         agent
@@ -39,7 +39,7 @@ describe('Posts', function() {
                 done(err);
             });
     });
-    it('Should create with valid attributes at POST /posts/new', function(done) {
+    it('Should create a post with valid fields at POST /posts/new', function(done) {
         // Checks how many posts there are now
         Post.estimatedDocumentCount()
             .then(function (initialDocCount) {
