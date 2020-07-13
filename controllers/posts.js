@@ -4,36 +4,46 @@ const post = require('../models/post');
 module.exports = (app) => {
     // INDEX
     app.get('/', (req, res) => {
+        var currentUser = req.user;
+      
         Post.find({}).lean()
             .then(posts => {
-                res.render("posts-index", { posts });
+                res.render('posts-index', { posts, currentUser });
             })
             .catch(err => {
                 console.log(err.message);
             });
-    })
+    });
     // CREATE NEW POST [GET]
     app.get('/posts/new', (req, res) => {
-        res.render('posts-new');
+        var currentUser = req.user;
+        if (req.user) {
+            res.render('posts-new', currentUser);
+        } else {
+            res.redirect('/');
+        }
     })
     // CREATE NEW POST [POST]
-    app.post('/posts/new', (req, res) => {
-        // INSTANTIATE INSTANCE OF POST MODEL
-        const post = new Post(req.body);
-
-        // SAVE INSTANCE OF POST MODEL TO DB
-        post.save((err, post) => {
-            // REDIRECT TO THE ROOT
-            return res.redirect(`/`);
-        })
+    app.post("/posts/new", (req, res) => {
+        if (req.user) {
+            var post = new Post(req.body);
+        
+            post.save(function(err, post) {
+                return res.redirect(`/`);
+            });
+        } else {
+            return res.status(401); // UNAUTHORIZED
+        }
     });
 
     // SINGLE POST [GET]
     app.get('/posts/:id', function(req, res) {
+        // ALLOW ROUTE TO IDENTIFY USER
+        var currentUser = req.user;
         // LOOK UP THE POST
         Post.findById(req.params.id).populate('comments').lean()
             .then((post) => {
-                res.render('posts-show', { post })
+                res.render('posts-show', { post, currentUser })
             })
             .catch((err) => {
                 console.log(err.message)
@@ -42,9 +52,10 @@ module.exports = (app) => {
 
     // CATEGORY SHOW [GET]
     app.get("/n/:category", function(req, res) {
+        var currentUser = req.user;
         Post.find({ category: req.params.category }).lean()
             .then(posts => {
-                res.render("posts-index", { posts });
+                res.render("posts-index", { posts, currentUser });
             })
             .catch(err => {
                 console.log(err);
