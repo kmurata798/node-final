@@ -11,10 +11,10 @@
     <ul class="nav navbar-nav navbar-right">
         {{#if currentUser}}
             <li><h6>Logged in as: <strong>{{currentUser.username}}</strong></h6></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="/logout" style="color:red;">Logout</a></li>
         {{else}}
-            <li><a href="/login">Login</a></li>
-            <li><a href="/sign-up">Sign Up</a></li>
+            <li><a href="/login" style="color:rgb(0, 171, 145)">Login</a></li>
+            <li><a href="/sign-up" style="color:rgb(0, 111, 171)">Sign Up</a></li>
         {{/if}}
     </ul>
     </div>

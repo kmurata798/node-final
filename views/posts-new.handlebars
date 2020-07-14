@@ -2,20 +2,21 @@
   <div class="col-sm-4 col-sm-offset-4">
     <form action="/posts/new" method="post">
       <legend>New Post</legend>
+      <h6>(<strong style="font-size: 25px; color:rgb(131, 53, 69)"> * </strong>= Required Field )</h6>
       <div class="form-group">
-        <label for="post-title">Title</label>
+        <label for="post-title" style="font-size: 25px; ">Title <strong style="color:rgb(131, 53, 69)">*</strong></label>
         <input type="text" name="title" class="form-control" id="post-title" placeholder="Title">
       </div>
       <div class="form-group">
-        <label for="post-url">Url</label>
+        <label for="post-url" style="font-size: 25px; ">Url <strong style="color:rgb(131, 53, 69)">*</strong></label>
         <input type="url" name="url" class="form-control" id="post-url" placeholder="https://www.google.com">
       </div>
       <div class="form-group">
-        <label for="post-summary">Summary</label>
+        <label for="post-summary" style="font-size: 25px; ">Summary <strong style="color:rgb(131, 53, 69)">*</strong></label>
         <textarea name="summary" class="form-control" id="post-summary" placeholder="Title"></textarea>
       </div>
       <div class="form-group">
-        <label for="post-category">Category</label>
+        <label for="post-category">Category [Optional]</label>
         <input name="category" type="text" class="form-control" id="post-category" placeholder="Category">
       </div>
       <div class='text-right'>
