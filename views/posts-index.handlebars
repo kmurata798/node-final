@@ -12,13 +12,18 @@
                         <a href="/n/{{this.category}}">{{this.category}}</a>
                     </div>
                     <h4>Votes: {{this.voteScore}}</h4>
-                    <form class="vote-up" data-id="{{this._id}}">
-                        <button type="submit">Vote Up</button>
-                    </form>
-                    |
-                    <form class="vote-down" data-id="{{this._id}}">
-                        <button type="submit">Vote Down</button>
-                    </form>
+                    {{!-- Need to add ../ when using if statement inside of each statement!!! --}}
+                    {{#if ../currentUser}}
+                        <form class="vote-up" data-id="{{this._id}}">
+                            <button type="submit">Vote Up</button>
+                        </form>
+                        |
+                        <form class="vote-down" data-id="{{this._id}}">
+                            <button type="submit">Vote Down</button>
+                        </form>
+                    {{else}}
+                        <p>Login to vote</p>
+                    {{/if}}
                 </li>
             {{/each}}
         </ul>
