@@ -20,7 +20,7 @@ module.exports = (app) => {
     app.get('/posts/new', (req, res) => {
         var currentUser = req.user;
         if (req.user) {
-            res.render('posts-new', currentUser);
+            res.render('posts-new', { currentUser });
         } else {
             res.redirect('/');
         }
