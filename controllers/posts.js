@@ -78,21 +78,25 @@ module.exports = (app) => {
                 console.log(err);
             });
     });
+    // WARNING => WEBSITE CRASHES WHEN USERS UPVOTE/DOWNVOTE MORE THAN 5 TIMES BEFORE REFRESHING THE PAGE!!!!!!!!!!!
+    // UPVOTING
     app.put("/posts/:id/vote-up", function(req, res) {
         Post.findById(req.params.id).exec(function(err, post) {
-          post.upVotes.push(req.user._id);
-          post.voteScore = post.voteScore + 1;
-          post.save();
-      
-          res.status(200);
+            post.upVotes.push(req.user._id);
+            // post.voteScore = post.voteScore + 1;
+            post.voteScore ++;
+            post.save();
+        
+            res.status(200);
         });
     });
-      
+      // DOWNVOTING
     app.put("/posts/:id/vote-down", function(req, res) {
         Post.findById(req.params.id).exec(function(err, post) {
             post.downVotes.push(req.user._id);
             console.log(post.voteScore)
-            post.voteScore = post.voteScore - 1;
+            // post.voteScore = post.voteScore - 1;
+            post.voteScore --;
             post.save();
         
             res.status(200);

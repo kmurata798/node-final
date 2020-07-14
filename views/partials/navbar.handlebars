@@ -1,10 +1,12 @@
-<nav class="navbar navbar-default navbar-light bg-light">
+<nav class="navbar navbar-default"  style="background-color: rgb(185, 247, 233);">
     <div class="container-fluid">
     <a class="navbar-brand" href="/">CartoonClub</a>
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
             {{#if currentUser}}
                 <a href="/posts/new" class="btn btn-primary navbar-btn">New Post</a>
+            {{else}}
+                <a href="/login" class="btn btn-primary navbar-btn"><strong>Login to create a post</strong></a>
             {{/if}}
         </li>
     </ul>
