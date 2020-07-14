@@ -7,6 +7,8 @@
         <a href="/login" class="btn btn-primary navbar-btn"><strong>Login to reply</strong></a> --}}
     {{/if}}
     {{#each comment.comments}}
-        {{> comment comment=this postId=../postId currentUser=../currentUser}}
+        <div class="mb-1 pr-1" style="border:1px solid black">
+            {{> comment comment=this postId=../postId currentUser=../currentUser}}
+        </div>
     {{/each}}
 </div>
