@@ -2,7 +2,7 @@
     <div class="col-sm-8 col-sm-offset-2">
         <ul>
             {{#each posts}}
-                <li class="list-group-item" style="background-color: rgb(157, 216, 203);border:2px solid rgb(36, 92, 116)">
+                <li class="list-group-item mb-1 pt-3" style="background-color: rgb(157, 216, 203);border:2px solid rgb(36, 92, 116)">
                     <div class="lead">
                         <a href="/posts/{{this._id}}" class="lead">{{this.title}}</a>
                     </div>
@@ -11,7 +11,7 @@
                     <div class="text-right">
                         <a href="/n/{{this.category}}">{{this.category}}</a>
                     </div>
-                    <h4>Votes: {{this.voteScore}}</h4>
+                    <span id="likes-count-{{ this.id }}">Votes: {{ this.voteScore }}</span>
                     {{!-- Need to add ../ when using if statement inside of each statement!!! --}}
                     {{#if ../currentUser}}
                         <form class="vote-up" data-id="{{this._id}}">

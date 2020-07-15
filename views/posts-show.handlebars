@@ -3,6 +3,7 @@
   <div class="col-sm-6 col-sm-offset-3 pt-3" style="background-color: rgb(149, 223, 206);border:3px solid rgb(36, 92, 116)">
       {{!-- target="_blank" opens the given link in a new window --}}
     <a href="{{post.url}}" class="lead" target="_blank">{{post.title}}</a>
+    <img src="{{post.image}}" alt="image" width="300" height="275">
     <p>{{post.summary}}</p>
     <div class="text-right">
       <p>Post Author: {{post.author.username}}</p>
@@ -13,7 +14,7 @@
       <textarea class='form-control' name="content" placeholder="Comment"></textarea>
       <div class="text-right">
         {{#if currentUser}}
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary mt-1 mb-1">Save</button>
         {{else}}
           <a href="/login" class="btn btn-primary navbar-btn mt-1"><strong>Login to comment</strong></a>
         {{/if}}
