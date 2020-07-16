@@ -15,7 +15,7 @@ $(document).ready(function() {
                 votecount += 1
                 voteCountEl.text(votecount) // Same for vote down (But -= 1)
                 // .closest will go up one level in the dom => pass in class "votecount" wrap number with span
-                // this will return the element
+                // this will return the element  
                 // 
                 // adjacent div to the vote button
                 // go up one with a sibling in the certain class
