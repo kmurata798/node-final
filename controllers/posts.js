@@ -27,6 +27,7 @@ module.exports = (app) => {
     })
     // CREATE
     app.post("/posts/new", (req, res) => {
+        // console.log(req.body);
         if (req.user) {
             var post = new Post(req.body);
             post.author = req.user._id;
